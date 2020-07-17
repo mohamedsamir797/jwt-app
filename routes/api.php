@@ -25,5 +25,19 @@ Route::middleware('JwtAuth')->post('logout', 'AuthController@logout');
 Route::middleware('JwtAuth')->post('refresh', 'AuthController@refresh');
 Route::middleware('JwtAuth')->post('payload', 'AuthController@payload');
 
+Route::group(['middleware' => 'JwtAuth'],function (){
+    Route::post('posts','PostController@index');
+    Route::post('posts/{id}','PostController@show');
+    Route::post('posts/create','PostController@store');
+    Route::post('posts/{id}/update','PostController@update');
+    Route::post('posts/{id}/delete','PostController@destroy');
+
+
+
+});
+
+
+
+
 
 
